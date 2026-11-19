@@ -1,0 +1,27 @@
+[project]
+name = "autoencoder"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "RichardPovinelli", email = "richard.povinelli@gmail.com"},
+    {name = "Richard J. Povinelli", email = "richard.povinelli@marquette.edu"},
+]
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "scikit-learn",
+    "scipy",
+    "tensorflow",
+    "torch",
+    "torchvision",
+    "torchaudio",
+    "gdown>=5.2.0",
+]
+requires-python = ">=3.12,<3.16"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
