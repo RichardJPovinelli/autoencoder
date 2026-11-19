@@ -1,3 +1,17 @@
+# MNIST Digit-Predicting Autoencoder
+
+This repository implements a two-stage PyTorch autoencoder and probabilistic bottleneck classifier for 28x28 MNIST handwritten digits (Python 3.15):
+
+1. **Unsupervised autoencoder (`mnist_autoencoder.py`):** Compresses 784-pixel MNIST images through `784 -> 128 -> latent_dim` (default `latent_dim=16`) into a low-dimensional bottleneck vector $z$ and reconstructs the image via `latent_dim -> 128 -> 784` using binary cross-entropy loss.
+2. **Bottleneck digit classifier (`mnist_digit_classifier.py`):** Extracts frozen bottleneck features $z$ from the training split, fits a standardized multi-layer perceptron (`StandardScaler` + `MLPClassifier`), and predicts only the digit value (`0`–`9`) and its associated probability (`0.0`–`1.0`) via `predict_digit(image) -> tuple[int, float]`.
+
+## Repository structure
+
+- `mnist_autoencoder.py` — `Autoencoder`, `flatten_mnist_images`, `set_random_seed`, and `train_autoencoder`.
+- `mnist_digit_classifier.py` — `ExperimentConfig`, `DigitAutoencoderPredictor`, `predict_digit`, `format_prediction`, and the CLI runner (`--epochs`, `--latent-dim`, `--batch-size`, `--learning-rate`, `--seed`, `--data-dir`, `--samples`).
+- `tests/test_mnist_digit_autoencoder.py` — `pytest` unit test suite.
+- `pyproject.toml` — Project metadata and dependency declarations.
+
 # Run the Python program
 
 These instructions use Python 3.15 on Windows and macOS. Install Git and uv once, then follow the same clone and run steps on either platform.
@@ -50,10 +64,10 @@ Close and reopen Terminal after installing.
 
    If you already cloned the repository, open that folder in PowerShell or Terminal and go straight to step 3.
 
-3. From the folder containing `main.py` and `requirements.txt`, run:
+3. From the folder containing `mnist_digit_classifier.py` and `requirements.txt`, run:
 
    ```sh
-   uv run --python 3.15 --with-requirements requirements.txt python main.py
+   uv run --python 3.15 --with-requirements requirements.txt python mnist_digit_classifier.py
    ```
 
    On first use, uv downloads Python 3.15 if needed and installs the packages listed in `requirements.txt`. To run the program again, open the same folder and repeat the command.
@@ -61,7 +75,7 @@ Close and reopen Terminal after installing.
    If the program uses only the Python standard library and has no `requirements.txt`, run:
 
    ```sh
-   uv run --python 3.15 python main.py
+   uv run --python 3.15 python mnist_digit_classifier.py
    ```
 
 ## Check your setup
@@ -74,4 +88,4 @@ uv --version
 uv run --python 3.15 python --version
 ```
 
-The last command should print `Python 3.15.x`, where `x` is the patch version. If the program reports that it cannot find `main.py` or `requirements.txt`, check that you are in the assignment folder and that the filenames match those in the repository.
+The last command should print `Python 3.15.x`, where `x` is the patch version. If the program reports that it cannot find `mnist_digit_classifier.py` or `requirements.txt`, check that you are in the assignment folder and that the filenames match those in the repository.
