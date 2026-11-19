@@ -33,7 +33,7 @@ class ExperimentConfig:
     batch_size: int = 256
     learning_rate: float = 1e-3
     seed: int = 42
-    data_dir: Path = Path("code/autoencoder/data")
+    data_dir: Path = Path(__file__).resolve().parent / "data"
 
     def __post_init__(self) -> None:
         if self.latent_dim < 1:
@@ -200,7 +200,7 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--data-dir",
         type=Path,
-        default=Path("code/autoencoder/data"),
+        default=Path(__file__).resolve().parent / "data",
         help="Directory holding MNIST data.",
     )
     parser.add_argument(

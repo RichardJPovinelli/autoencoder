@@ -9,8 +9,11 @@ This repository implements a two-stage PyTorch autoencoder and probabilistic bot
 
 - `mnist_autoencoder.py` — `Autoencoder`, `flatten_mnist_images`, `set_random_seed`, and `train_autoencoder`.
 - `mnist_digit_classifier.py` — `ExperimentConfig`, `DigitAutoencoderPredictor`, `predict_digit`, `format_prediction`, and the CLI runner (`--epochs`, `--latent-dim`, `--batch-size`, `--learning-rate`, `--seed`, `--data-dir`, `--samples`).
+- `dimension_reduction.py` — Standalone MNIST dimensionality-reduction and reconstruction visualization script.
 - `tests/test_mnist_digit_autoencoder.py` — `pytest` unit test suite.
-- `pyproject.toml` — Project metadata and dependency declarations.
+- `requirements.txt` & `pyproject.toml` — Dependency declarations and project metadata.
+- `docs/adr/0001-two-stage-mnist-digit-autoencoder.md` — Architecture decision record.
+- `design/mnist-digit-autoencoder.md` — Feature design specification.
 
 # Run the Python program
 
